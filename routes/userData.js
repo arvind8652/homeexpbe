@@ -19,4 +19,10 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/validate").post((req, res) => {
+  UserData.find({ phoneNo: req.body.phoneNo, password: req.body.password })
+    .then((user) => res.json(user))
+    .catch((err) => res.status(400).json("Error:" + err));
+});
+
 module.exports = router;
